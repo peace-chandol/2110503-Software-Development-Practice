@@ -8,29 +8,15 @@ const DentistSchema = new mongoose.Schema({
         trim: true,
         maxlength: [50, 'Name cannot be more than 50 characters']
     },
-    address: {
-        type: String,
-        required: [true, 'Please add an address']
+    yearsOfExperience: {
+        type: Number,
+        required: [true, 'Please add years of experience'],
+        min: [0, 'Years of experience cannot be less than 0']
     },
-    district: {
+    expertise: {
         type: String,
-        required: [true, 'Please add a district']
-    },
-    province: {
-        type: String,
-        required: [true, 'Please add a provice']
-    },
-    postalcode: {
-        type: String,
-        required: [true, 'Please add a postalcode'],
-        maxlength: [5, 'Postal Code cannot be more than 5 digits']
-    },
-    tel: {
-        type: String
-    },
-    region: {
-        type: String,
-        required: [true, 'Please add a region']
+        required: [true, 'Please add expertise'],
+        enum: ['General', 'Orthodontics', 'Periodontics', 'Pediatric', 'Oral Surgery', 'Endodontics', 'Prosthodontics', 'Cosmetic']
     },
 }, {
     toJSON: { virtuals: true },
