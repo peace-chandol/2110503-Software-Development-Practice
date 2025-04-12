@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const HospitalSchema = new mongoose.Schema({
+const DentistSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Please add a name'],
@@ -37,11 +37,11 @@ const HospitalSchema = new mongoose.Schema({
     toObject: { virtuals: true }
 })
 
-HospitalSchema.virtual('appointments', {
+DentistSchema.virtual('appointments', {
     ref: 'Appointment',
     localField: '_id',
-    foreignField: 'hospital',
+    foreignField: 'dentist',
     justOne: false
 })
 
-module.exports = mongoose.model('Hospital', HospitalSchema)
+module.exports = mongoose.model('Dentist', DentistSchema)

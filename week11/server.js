@@ -15,7 +15,7 @@ dotenv.config({ path: "./config/config.env" })
 
 connectDB()
 
-const hospitals = require('./routes/hospital')
+const dentists = require('./routes/dentist')
 const auth = require('./routes/auth')
 const appointments = require('./routes/appointments')
 const { version } = require("mongoose")
@@ -54,7 +54,7 @@ const swaggerOption = {
 const swaggerDocs = swaggerJsDoc(swaggerOption)
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
-app.use('/api/v1/hospitals', hospitals)
+app.use('/api/v1/dentists', dentists)
 app.use('/api/v1/auth', auth)
 app.use('/api/v1/appointments', appointments)
 
