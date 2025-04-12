@@ -1,20 +1,20 @@
 const express = require('express')
 const router = express.Router()
-const {getHospitals, getHospital, createHospital, updateHospital, deleteHospital} = require('../controllers/hospitals')
+const {getDentists, getDentist, createDentist, updateDentist, deleteDentist} = require('../controllers/dentists')
 const appointmentsRouter = require('./appointments')
 
 const { protect, authorize } = require('../middleware/auth')
 
-router.use('/:hospitalId/appointments', appointmentsRouter)
+router.use('/:dentistId/appointments', appointmentsRouter)
 
 router.route('/')
-    .get(getHospitals)
-    .post(protect, authorize('admin'), createHospital)
+    .get(getDentists)
+    .post(protect, authorize('admin'), createDentist)
 
 router.route('/:id')
-    .get(getHospital)
-    .put(protect, authorize('admin'),updateHospital)
-    .delete(protect, authorize('admin'),deleteHospital)
+    .get(getDentist)
+    .put(protect, authorize('admin'),updateDentist)
+    .delete(protect, authorize('admin'),deleteDentist)
 
 module.exports = router
 
@@ -22,7 +22,7 @@ module.exports = router
  * @swagger
  * components:
  *   schemas:
- *     Hospital:
+ *     Dentist:
  *       type: object
  *       required:
  *         - name
@@ -31,14 +31,14 @@ module.exports = router
  *         id:
  *           type: string
  *           format: uuid
- *           descruiption: The auto-generated id of the hospital
+ *           descruiption: The auto-generated id of the dentist
  *           example: 67ed1b13c72c1a15127e2326
  *         ลำดับ:
  *           type: string
  *           description: Ordinal number
  *         name:
  *           type: string
- *           description: Hospital name
+ *           description: Dentist name
  *         address:
  *           type: string
  *           description: House No., Street, Road
@@ -60,7 +60,7 @@ module.exports = router
  *       example:
  *         id: 67ed1b13c72c1a15127e2326
  *         ลำดับ: 127
- *         name: Happy Hospital
+ *         name: Happy Dentist
  *         address: 121 ถใสุขุมวิท
  *         district: บางนา
  *         province: กรุงเทพ
@@ -72,122 +72,122 @@ module.exports = router
 /**
  * @swagger
  * tags:
- *   name: Hospitals
- *   description: The hospitals managing API
+ *   name: Dentists
+ *   description: The dentists managing API
  */
 
 /**
  * @swagger
- * /hospitals:
+ * /dentists:
  *   get:
- *     summary: Returns the list of all the hospitals
- *     tags: [Hospitals]
+ *     summary: Returns the list of all the dentists
+ *     tags: [Dentists]
  *     responses:
  *       200:
- *         description: The list of the hospitals
+ *         description: The list of the dentists
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Hospital'
+ *                 $ref: '#/components/schemas/Dentist'
  */
 
 /**
  * @swagger
- * /hospitals/{id}:
+ * /dentists/{id}:
  *   get:
- *     summary: Get the hospital by id
- *     tags: [Hospitals]
+ *     summary: Get the dentist by id
+ *     tags: [Dentists]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The hospital id
+ *         description: The dentist id
  *     responses:
  *       200:
- *         description: The hospital description by id
+ *         description: The dentist description by id
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Hospital'
+ *               $ref: '#/components/schemas/Dentist'
  *       404:
- *         description: The hospital was not found
+ *         description: The dentist was not found
  */
 
 /**
  * @swagger
- * /hospitals:
+ * /dentists:
  *   post:
- *     summary: Create a new hospital
- *     tags: [Hospitals]
+ *     summary: Create a new dentist
+ *     tags: [Dentists]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Hospital'
+ *             $ref: '#/components/schemas/Dentist'
  *     responses:
  *       201:
- *         description: The hospital was successful created
+ *         description: The dentist was successful created
  *         content:
  *           application/json:
  *             schema:
- *                 $ref: '#/components/schemas/Hospital'
+ *                 $ref: '#/components/schemas/Dentist'
  *       404:
  *         description: Some server error
  */
 
 /**
  * @swagger
- * /hospitals/{id}:
+ * /dentists/{id}:
  *   put:
- *     summary: Update the hospital by id
- *     tags: [Hospitals]
+ *     summary: Update the dentist by id
+ *     tags: [Dentists]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The hospital id
+ *         description: The dentist id
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Hospital'
+ *             $ref: '#/components/schemas/Dentist'
  *     responses:
  *       200:
- *         description: The hospital was updated
+ *         description: The dentist was updated
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Hospital'
+ *               $ref: '#/components/schemas/Dentist'
  *       404:
- *         description: The hospital was not found
+ *         description: The dentist was not found
  *       500:
  *         description: Some error happened
  */
 
 /**
  * @swagger
- * /hospitals/{id}:
+ * /dentists/{id}:
  *   delete:
- *     summary: Remove the hospital by id
- *     tags: [Hospitals]
+ *     summary: Remove the dentist by id
+ *     tags: [Dentists]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: string
  *         required: true
- *         description: The hospital id
+ *         description: The dentist id
  *     responses:
  *       200:
- *         description: The hospital was deleted
+ *         description: The dentist was deleted
  *       404:
- *         description: The hospital was not found
+ *         description: The dentist was not found
  */

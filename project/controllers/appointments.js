@@ -1,23 +1,23 @@
 const Appointment = require('../models/Appointment')
-const Hospital = require('../models/Hospital')
+const Dentist = require('../models/Dentist')
 
 exports.getAppointments = async (req, res, next) => {
     let query
     if (req.user.role !== 'admin') {
         query = Appointment.find({ user: req.user.id }).populate({
-            path: 'hospital',
+            path: 'dentist',
             select: 'name province tel'
         })
     } else {
-        if (req.params.hospitalId) {
-            console.log(req.params.hospitalId)
-            query = Appointment.find({ hospital: req.params.hospitalId }).populate({
-                path: 'hospital',
+        if (req.params.dentistId) {
+            console.log(req.params.dentistId)
+            query = Appointment.find({ dentist: req.params.dentistId }).populate({
+                path: 'dentist',
                 select: 'name province tel'
             })
         } else {
             query = Appointment.find().populate({
-                path: 'hospital',
+                path: 'dentist',
                 select: 'name province tel'
             })
         }
@@ -34,7 +34,7 @@ exports.getAppointments = async (req, res, next) => {
 exports.getAppointment = async (req, res, next) => {
     try {
         const appointment = await Appointment.findById(req.params.id).populate({
-            path: 'hospital',
+            path: 'dentist',
             select: 'name province tel'
         })
 
@@ -50,12 +50,12 @@ exports.getAppointment = async (req, res, next) => {
 
 exports.addAppointment = async (req, res, next) => {
     try {
-        req.body.hospital = req.params.hospitalId
+        req.body.dentist = req.params.dentistId
 
-        const hospital = await Hospital.findById(req.params.hospitalId)
+        const dentist = await Dentist.findById(req.params.dentistId)
 
-        if (!hospital) {
-            return res.status(404).json({ success: false, message: `No hospital with the id of ${req.params.hospitalId}` })
+        if (!dentist) {
+            return res.status(404).json({ success: false, message: `No dentist with the id of ${req.params.dentistId}` })
         }
         req.body.user = req.user.id
         const existedAppointment = await Appointment.find({ user: req.user.id })

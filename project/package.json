@@ -1,5 +1,5 @@
 {
-  "name": "a-7-peace-chandol",
+  "name": "project",
   "version": "1.0.0",
   "description": "[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/JTCvLSb7)",
   "main": "server.js",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/2110503-67CP/a-7-peace-chandol.git"
+    "url": "git+https://github.com/2110503-67CP/project.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/2110503-67CP/a-7-peace-chandol/issues"
+    "url": "https://github.com/2110503-67CP/project/issues"
   },
-  "homepage": "https://github.com/2110503-67CP/a-7-peace-chandol#readme",
+  "homepage": "https://github.com/2110503-67CP/project#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
