@@ -10,4 +10,6 @@
 - [X] The system shall allow the admin to view any bookings.
 - [X] The system shall allow the admin to edit any bookings.
 - [X] The system shall allow the admin to delete any bookings.
-- [ ] The system shall allow a registered user to report bug/errors/problem of the system.
+- [X] The system shall allow a registered user to report bug/errors/problem of the system.
+- [ ] Test
+- [ ] Diagram

@@ -18,6 +18,7 @@ connectDB()
 const dentists = require('./routes/dentist')
 const auth = require('./routes/auth')
 const appointments = require('./routes/appointments')
+const report = require('./routes/reports')
 const { version } = require("mongoose")
 
 const app = express()
@@ -57,6 +58,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 app.use('/api/v1/dentists', dentists)
 app.use('/api/v1/auth', auth)
 app.use('/api/v1/appointments', appointments)
+app.use('/api/v1/reports', report)
 
 const PORT = process.env.PORT || 5000
 
